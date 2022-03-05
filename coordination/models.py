@@ -39,7 +39,7 @@ REGION_GROUP_TYPE = 2007
 
 
 class Department(Group):
-    object_type = IntegerField(unique=True)
+    object_type = IntegerField(unique=True, default=1)
     description = TextField(max_length=2000, default='', blank=True)
 
 class Region(models.Model):

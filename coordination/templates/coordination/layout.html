@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <title> {{ title_name }}</title>
+</head>
+<body style="background-image: url({% static '/images/background.png' %})">
+    {{ request.user.id|json_script:"user_id" }}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Vadya Inc.</a>
+      
+        <div>
+          <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><strong>{{ user.username }}</strong></a>
+                </li>
+            {% endif %}
+            {% if user.is_authenticated %}
+                {% block head %}{% endblock %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'work_analizer:logout' %}">Log Out</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'work_analizer:login' %}">Log In</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'work_analizer:register' %}">Register</a>
+                </li>
+            {% endif %}
+          </ul>
+        </div>
+    </nav>
+    <div class="body">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

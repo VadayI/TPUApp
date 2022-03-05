@@ -1,0 +1,1 @@
+web: gunicorn coordinationApp.wsgi --log-file -

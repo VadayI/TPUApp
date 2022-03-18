@@ -5,6 +5,7 @@ from django.db.models.signals import post_migrate
 class CoordinationConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'coordination'
+    verbose_name = "Struktura"
 
     def ready(self, **kwargs):
         from .signals import generate_groups, generate_regions, generate_voivodeships, generate_aplication_status

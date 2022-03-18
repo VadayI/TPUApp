@@ -72,6 +72,7 @@ class SubgroupAdmin(admin.ModelAdmin):
 
 class StatusAdmin(admin.ModelAdmin):
     list_display = ("name",)
+    readonly_fields = ('object_type',)
 
 class IsVeryBenevolentFilter(admin.SimpleListFilter):
     title = 'the number of vacancies'
@@ -182,7 +183,7 @@ class ApplicationAdmin(admin.ModelAdmin):
 class TaskAdmin(admin.ModelAdmin):
     list_display = ("department", "name", "status", "sender", "accepted_by", "description", "created_date", "modificate_date")
     list_filter = ('department', 'status', 'accepted_by', 'created_date', 'name')
-    
+
     def get_readonly_fields(self, request, obj=None):
         self.readonly_fields = ('sender', 'object_type')
         if getattr(obj, 'sender', None) is not None:
@@ -190,13 +191,33 @@ class TaskAdmin(admin.ModelAdmin):
         return self.readonly_fields
 
     def save_model(self, request, obj, form, change):
+        if not obj.sended_msg:
+            sender = ''
+            receiver = ''
+            body = ''
+            # sending_message_Watsapp(sender,receiver,body)
+
         if obj.status.id == 2: # Jeśli jest w trakcie obróbki z aktualizować użytkownika
             obj.accepted_by = request.user
         if getattr(obj, 'sender', None) is None:
             obj.sender = request.user
         obj.save()
 
-
+def sending_message_Watsapp(sender, receiver, body):
+    from twilio.rest import Client 
+    
+    print(sender, receiver, body)
+    account_sid = '' 
+    auth_token = '' 
+    client = Client(account_sid, auth_token) 
+    
+    message = client.messages.create( 
+                                from_='whatsapp:{}'.format(sender),  
+                                body=body,      
+                                to='whatsapp:{}'.format(receiver) 
+                            ) 
+    
+    print(message.sid)
 
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(Department, DepartmentAdmin)

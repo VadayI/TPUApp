@@ -87,27 +87,27 @@ EMAIL_HOST_PASSWORD = 'bsiiwscpmupwcsvz'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dbTPUApp', 
-        'USER': 'postgres', 
-        'PASSWORD': 'admin',
-        'HOST': '127.0.0.1', 
-        'PORT': '5432',
-    }
-}
+#DATABASES = {
+    #'default': {
+       # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+      #  'NAME': 'dbTPUApp', 
+     #   'USER': 'postgres', 
+    #    'PASSWORD': 'admin',
+   #     'HOST': '127.0.0.1', 
+  #      'PORT': '5432',
+ #   }
+#}
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'dbTPUApp', 
-#         'USER': 'postgres', 
-#         'PASSWORD': 'VadMel94',
-#         'HOST': '127.0.0.1', 
-#         'PORT': '5432',
-#     }
-# }
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+         'NAME': 'dbTPUApp', 
+         'USER': 'postgres', 
+         'PASSWORD': 'VadMel94',
+         'HOST': '127.0.0.1', 
+         'PORT': '5432',
+     }
+ }
 
 
 # Database

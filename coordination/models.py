@@ -1,5 +1,4 @@
 
-from asyncio.windows_events import NULL
 from django.db import models
 from django.db.models.fields import BooleanField, CharField, DateTimeField, IntegerField, TextField
 from django.db.models.fields.related import ForeignKey

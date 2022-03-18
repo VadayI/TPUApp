@@ -259,7 +259,7 @@ class Task(models.Model):
             message = 'Sprawdż nowe zananie na liście. Nazwa: ' + self.name + ' - ' + self.description
             recipients_list = []
             if self.accepted_by is not None:
-                if self.accepted_by.email is not '':
+                if self.accepted_by.email != '':
                     recipients_list.append(self.accepted_by.email)
                 else:
                     subject = 'Wiadomość o nowym zadaniu nie zostało wysłane do ' + self.accepted_by.username
